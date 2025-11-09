@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:task_tracker_with_bloc/bloc/tasks_bloc.dart';
 import 'package:task_tracker_with_bloc/tasks.dart';
 
 class TaskAddPage extends StatefulWidget {
   const TaskAddPage({super.key});
 
-  @override 
+  @override
   State<TaskAddPage> createState() => _TaskAddPageState();
 }
 
@@ -25,11 +27,18 @@ class _TaskAddPageState extends State<TaskAddPage> {
       ),
       floatingActionButton: IconButton(
         onPressed: (){
-          final task = Tasks(
+          if(_nameController.text.trim().isEmpty ||
+             _descriptionController.text.trim().isEmpty
+          ){
+            return;
+          }
+          final newTask = Tasks(
             taskName: _nameController.text, 
             taskDescription: _descriptionController.text,
           ); 
-          Navigator.pop(context, task);
+
+          context.read<TasksBloc>().add(AddTaskEvent(newTask));
+          Navigator.pop(context);
         },
         icon: Icon(Icons.add_box_rounded, size: 30, color: Colors.blue)
       ),

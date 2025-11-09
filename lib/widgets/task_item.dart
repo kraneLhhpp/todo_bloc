@@ -3,10 +3,10 @@ import 'package:task_tracker_with_bloc/tasks.dart';
 
 class TaskItem extends StatelessWidget {
   final Tasks task;
-  final VoidCallback details;
-  final VoidCallback deleteTask;
+  final VoidCallback onShowdetails;
+  final VoidCallback onDeleteTask;
 
-  const TaskItem({super.key, required this.task, required this.details, required this.deleteTask});
+  const TaskItem({super.key, required this.task, required this.onShowdetails, required this.onDeleteTask});
 
   @override
   Widget build(BuildContext context) {
@@ -33,13 +33,13 @@ class TaskItem extends StatelessWidget {
           Row(
             children: [
               IconButton(
-                onPressed: details, 
+                onPressed: onShowdetails, 
                 icon: Icon(Icons.arrow_forward_ios,size: 40,)
               ),
               const SizedBox(width: 10),
 
               IconButton(
-                onPressed: deleteTask, 
+                onPressed: onDeleteTask, 
                 icon: Icon(Icons.delete, color: Colors.black)
               )
             ],

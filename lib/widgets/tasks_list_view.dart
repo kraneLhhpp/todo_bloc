@@ -40,18 +40,15 @@ class TasksListView extends StatelessWidget {
               final task = filteredTasks[index];
               return TaskItem(
                 task: task,
-                details: () {
+                onShowdetails: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (newContext) => BlocProvider.value(
-                        value: BlocProvider.of<TasksBloc>(context),
-                        child: DetailsPage(task: task),
-                      ),
+                      builder: (newContext) => DetailsPage(task: task),
                     ),
                   );
                 },
-                deleteTask: (){
+                onDeleteTask: (){
                   context.read<TasksBloc>().add(TaskDeleteEvent(task));
                 },
               );

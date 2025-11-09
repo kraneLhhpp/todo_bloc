@@ -3,10 +3,7 @@ part of 'tasks_bloc.dart';
 @immutable
 sealed class TasksEvent {}
 
-class GetTasksEvent extends TasksEvent {
-  final int count;
-  GetTasksEvent(this.count);
-}
+class GetTasksEvent extends TasksEvent {}
 
 class AddTaskEvent extends TasksEvent {
   final Tasks task;
